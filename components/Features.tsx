@@ -66,6 +66,70 @@ export default function Features() {
           </p>
         </motion.div>
 
+        {/* Visual showcase section */}
+        <motion.div
+          className="mb-20 grid lg:grid-cols-3 gap-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* Large featured image */}
+          <motion.div
+            className="lg:col-span-2 relative rounded-3xl overflow-hidden shadow-2xl h-[400px] group"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=1200&h=800&fit=crop"
+              alt="Diverse friends collaborating together"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-8">
+              <h3 className="text-2xl font-bold text-white mb-2">Connect & Collaborate</h3>
+              <p className="text-white/90">Build genuine connections with verified roommates</p>
+            </div>
+          </motion.div>
+
+          {/* Smaller images stacked */}
+          <div className="space-y-6">
+            <motion.div
+              className="relative rounded-3xl overflow-hidden shadow-xl h-[190px] group"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=400&fit=crop"
+                alt="Friends in modern apartment"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <h4 className="text-lg font-bold text-white mb-1">Find Your Space</h4>
+                <p className="text-sm text-white/90">Discover perfect homes</p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="relative rounded-3xl overflow-hidden shadow-xl h-[190px] group"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=600&h=400&fit=crop"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                alt="Happy diverse professionals"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <h4 className="text-lg font-bold text-white mb-1">Verified & Safe</h4>
+                <p className="text-sm text-white/90">100% secure platform</p>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+
         {/* Features grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => {
