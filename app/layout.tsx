@@ -9,7 +9,6 @@ export const metadata: Metadata = {
     description: "Match with verified roommates, find housing, and build meaningful connections.",
     type: "website",
 
-
     
   },
 };
