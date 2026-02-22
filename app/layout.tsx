@@ -8,7 +8,6 @@ export const metadata: Metadata = {
     title: "Roomie - Find Your Perfect Roommate",
     description: "Match with verified roommates, find housing, and build meaningful connections.",
     type: "website",
-    
   },
 };
 
