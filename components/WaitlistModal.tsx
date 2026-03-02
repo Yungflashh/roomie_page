@@ -17,10 +17,10 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
     email: '',
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    await handleFormspreeSubmit(e);
-  };
+ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  await handleFormspreeSubmit(e);
+};
 
   const handleClose = () => {
     if (!state.submitting) {
