@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Mail, User, Loader2, CheckCircle } from 'lucide-react';
 import { useState } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 
 interface WaitlistModalProps {
   isOpen: boolean;
@@ -10,50 +11,20 @@ interface WaitlistModalProps {
 }
 
 export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
+  const [state, handleFormspreeSubmit] = useForm("xvzbjrvy");
   const [formData, setFormData] = useState({
     name: '',
     email: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setError('');
-
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    // Simple email validation
-    if (!formData.email.includes('@')) {
-      setError('Please enter a valid email address');
-      setIsSubmitting(false);
-      return;
-    }
-
-    if (formData.name.trim().length < 2) {
-      setError('Please enter your name');
-      setIsSubmitting(false);
-      return;
-    }
-
-    setIsSubmitting(false);
-    setIsSuccess(true);
-
-    // Reset after showing success
-    setTimeout(() => {
-      setIsSuccess(false);
-      setFormData({ name: '', email: '' });
-      onClose();
-    }, 2000);
+    await handleFormspreeSubmit(e);
   };
 
   const handleClose = () => {
-    if (!isSubmitting) {
-      setIsSuccess(false);
-      setError('');
+    if (!state.submitting) {
+      setFormData({ name: '', email: '' });
       onClose();
     }
   };
@@ -84,13 +55,13 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
               <button
                 onClick={handleClose}
                 className="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 transition-colors"
-                disabled={isSubmitting}
+                disabled={state.submitting}
               >
                 <X className="w-5 h-5 text-slate-600" />
               </button>
 
               {/* Success state */}
-              {isSuccess ? (
+              {state.succeeded ? (
                 <motion.div
                   className="text-center py-8"
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -135,14 +106,16 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                         <input
                           type="text"
                           id="name"
+                          name="name"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="w-full pl-12 pr-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
                           placeholder="John Doe"
                           required
-                          disabled={isSubmitting}
+                          disabled={state.submitting}
                         />
                       </div>
+                      <ValidationError prefix="Name" field="name" errors={state.errors} />
                     </div>
 
                     {/* Email input */}
@@ -155,34 +128,25 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                         <input
                           type="email"
                           id="email"
+                          name="email"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           className="w-full pl-12 pr-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
                           placeholder="john@example.com"
                           required
-                          disabled={isSubmitting}
+                          disabled={state.submitting}
                         />
                       </div>
+                      <ValidationError prefix="Email" field="email" errors={state.errors} />
                     </div>
-
-                    {/* Error message */}
-                    {error && (
-                      <motion.p
-                        className="text-red-500 text-sm"
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                      >
-                        {error}
-                      </motion.p>
-                    )}
 
                     {/* Submit button */}
                     <button
                       type="submit"
-                      disabled={isSubmitting}
+                      disabled={state.submitting}
                       className="w-full py-4 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
-                      {isSubmitting ? (
+                      {state.submitting ? (
                         <>
                           <Loader2 className="w-5 h-5 animate-spin" />
                           Joining...
