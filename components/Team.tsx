@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 // Images go in your /public folder — e.g. image: '/john.jpeg'
 const team = [
   {
-    name: 'David Adenusi',
+    name: 'David',
     role: 'Founder & CEO',
     dept: 'Leadership',
     bio: 'David founded Roomie with a single conviction — finding a home should feel human. He brings vision, hustle, and deep empathy for what people need when navigating one of life\'s biggest transitions.',
@@ -18,7 +18,7 @@ const team = [
     tagBg: '#e6f7f7',
   },
   {
-    name: 'Braimoh-Igbo Ibrahim',
+    name: 'Braimoh-Igbo',
     role: 'Head of Growth',
     dept: 'Growth & Strategy',
     bio: 'Ibrahim architects Roomie\'s growth engine — from go-to-market strategy to user acquisition. He\'s obsessed with sustainable loops that bring the right people to the platform.',
@@ -29,7 +29,7 @@ const team = [
     tagBg: '#e6f7f7',
   },
   {
-    name: 'Ahmed Suleiman',
+    name: 'Ahmed',
     role: 'Frontend Developer',
     dept: 'Engineering',
     bio: 'Ahmed turns design into reality — pixel by pixel. He\'s the craftsman behind the interfaces you\'re interacting with, with a sharp eye for detail and a love for smooth, responsive UIs.',
