@@ -51,7 +51,7 @@ const team = [
     tagBg: '#e6f7f7',
   },
   {
-    name: 'Aboh Blessing',
+    name: 'Blessing',
     role: 'Asst. Operations Manager',
     dept: 'Operations',
     bio: 'Blessing keeps the engine running. From onboarding flows to day-to-day coordination, she ensures every moving part of Roomie operates with care, precision, and a personal touch.',
