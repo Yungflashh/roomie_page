@@ -98,7 +98,7 @@ export default function Hero({ onJoinWaitlist }: { onJoinWaitlist: () => void })
             transition={{ delay: 1, duration: 0.8 }}
           >
             {[
-              { number: '10K+', label: 'Early Signups' },
+              { number: '500+', label: 'Early Signups' },
               { number: '100%', label: 'Verified Users' },
               { number: '4.9', label: 'Beta Rating' },
             ].map((stat, index) => (
