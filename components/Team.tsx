@@ -40,7 +40,7 @@ const team = [
     tagBg: '#d4f0f0',
   },
   {
-    name: 'Mercy [Last Name]',
+    name: 'Mercy ',
     role: 'Social Media Manager',
     dept: 'Marketing',
     bio: 'Mercy tells the Roomie story where people actually are. She builds community, drives conversation, and makes sure our voice online feels real, warm, and worth following.',
