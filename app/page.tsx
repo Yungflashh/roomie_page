@@ -7,6 +7,7 @@ import HowItWorks from '@/components/HowItWorks';
 import Security from '@/components/Security';
 import WaitlistModal from '@/components/WaitlistModal';
 import Footer from '@/components/Footer';
+import Team from '@/components/Team';
 
 export default function Home() {
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
@@ -17,6 +18,7 @@ export default function Home() {
       <Features />
       <HowItWorks />
       <Security />
+      <Team/>
       
       {/* CTA Section */}
       <section className="py-24 bg-primary relative overflow-hidden">

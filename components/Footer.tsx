@@ -7,10 +7,9 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:hello@roomie.app', label: 'Email' },
+    { icon: Instagram, href: 'https://www.instagram.com/roomieappng?igsh=aDIyY3J5dzYxczl6', label: 'Instagram' },
+    { icon: Twitter, href: 'https://x.com/RommieAppNG', label: 'Twitter' },
+    { icon: Mail, href: 'mailto:support@roomieng.com', label: 'Email' },
   ];
 
   return (
