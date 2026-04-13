@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Instagram, Twitter, Linkedin, Mail } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -53,9 +54,9 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-slate-400 text-sm">
             <p>© {currentYear} Roomie. All rights reserved.</p>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-              <a href="#" className="hover:text-white transition-colors">Contact</a>
+              <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+              <a href="mailto:support@roomieng.com" className="hover:text-white transition-colors">Contact</a>
             </div>
           </div>
         </div>
