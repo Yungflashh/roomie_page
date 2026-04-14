@@ -56,6 +56,7 @@ export default function Footer() {
             <div className="flex gap-6">
               <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
               <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+              <Link href="/delete-account" className="hover:text-white transition-colors">Delete Account</Link>
               <a href="mailto:support@roomieng.com" className="hover:text-white transition-colors">Contact</a>
             </div>
           </div>
