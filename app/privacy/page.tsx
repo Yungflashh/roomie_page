@@ -4,17 +4,30 @@ import { motion } from 'framer-motion';
 import { Shield, Eye, Lock, Database, Share2, UserCheck, Mail, Calendar } from 'lucide-react';
 import Link from 'next/link';
 
+const tocSections = [
+  { id: 'information-we-collect', icon: Database, title: 'Information We Collect' },
+  { id: 'how-we-use-your-information', icon: Eye, title: 'How We Use Your Information' },
+  { id: 'how-we-share-your-information', icon: Share2, title: 'How We Share Your Information' },
+  { id: 'data-security', icon: Lock, title: 'Data Security' },
+  { id: 'your-privacy-controls', icon: UserCheck, title: 'Your Privacy Controls' },
+  { id: 'data-retention', icon: Calendar, title: 'Data Retention' },
+  { id: 'contact-us', icon: Mail, title: 'Contact Us' },
+];
+
 const Section = ({
+  id,
   icon: Icon,
   title,
   children,
 }: {
+  id: string;
   icon: React.ElementType;
   title: string;
   children: React.ReactNode;
 }) => (
   <motion.div
-    className="mb-10"
+    id={id}
+    className="mb-10 scroll-mt-28"
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
@@ -51,8 +64,9 @@ export default function PrivacyPage() {
       {/* Nav bar */}
       <header className="bg-white border-b border-slate-100 sticky top-0 z-50">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold text-primary">
-            roomie
+          <Link href="/" className="flex items-baseline gap-0.5">
+            <img src="/roomie-logo-transparent-cropped.png" alt="Roomie" className="h-6 w-auto" />
+            <span className="text-2xl font-bold leading-none text-primary">oomie</span>
           </Link>
           <Link
             href="/"
@@ -88,166 +102,192 @@ export default function PrivacyPage() {
 
       {/* Content */}
       <div className="container mx-auto px-6 py-16">
-        <div className="max-w-3xl mx-auto bg-white rounded-3xl shadow-sm border border-slate-100 p-8 md:p-12">
-
-          {/* Intro */}
-          <motion.p
-            className="text-slate-600 leading-relaxed mb-10 text-[15px] bg-primary/5 rounded-2xl p-5 border border-primary/10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            Welcome to Roomie ("we", "our", "us"). This Privacy Policy explains how we collect, use,
-            share, and protect your personal information when you use the Roomie mobile application and
-            website at{' '}
-            <a href="https://roomieng.com" className="text-primary font-medium hover:underline">
-              roomieng.com
-            </a>
-            . By using Roomie, you agree to the practices described in this policy.
-          </motion.p>
-
-          <Section icon={Database} title="Information We Collect">
-            <SubHeading title="Information you provide directly" />
-            <p>When you register and use Roomie, we collect:</p>
-            <BulletList
-              items={[
-                'Full name, email address, and phone number',
-                'Government-issued ID (for identity verification)',
-                'Profile photos and optional bio',
-                'Lifestyle preferences, daily schedule, and roommate requirements',
-                'Housing listing details (if you post a listing)',
-                'Messages and communications with other users',
-                'Financial information used within the bill-split feature',
-              ]}
-            />
-            <SubHeading title="Information collected automatically" />
-            <p>When you use the app, we also collect:</p>
-            <BulletList
-              items={[
-                'Approximate location (for nearby search)',
-                'Device type, operating system, and app version',
-                'Usage data: screens visited, features used, tap interactions',
-                'Crash reports and performance diagnostics',
-              ]}
-            />
-            <SubHeading title="Information from third parties" />
-            <p>
-              If you connect a social media account (Instagram, X/Twitter, etc.) for verification, we
-              receive basic profile data such as your username and profile picture from that platform.
-            </p>
-          </Section>
-
-          <Section icon={Eye} title="How We Use Your Information">
-            <p>We use your information to:</p>
-            <BulletList
-              items={[
-                'Create and manage your Roomie account',
-                'Match you with compatible roommates using our algorithm',
-                'Display your profile to other users (based on your privacy settings)',
-                'Enable in-app messaging, games, and community features',
-                'Power the bill-split, chores, and home management tools',
-                'Send you notifications about matches, messages, and app updates',
-                'Verify your identity and detect fraudulent or unsafe activity',
-                'Improve app performance, features, and the matching algorithm',
-                'Comply with legal obligations',
-              ]}
-            />
-          </Section>
-
-          <Section icon={Share2} title="How We Share Your Information">
-            <p>
-              <strong>We do not sell your personal data.</strong> We may share information only in the
-              following circumstances:
-            </p>
-            <BulletList
-              items={[
-                'With other Roomie users as part of your public or semi-private profile — controlled entirely by your Privacy & Security settings',
-                'With trusted service providers who help us run the app (cloud hosting, analytics, push notifications) — they are bound by confidentiality agreements',
-                'With law enforcement or regulatory bodies when required by applicable Nigerian law or a valid legal process',
-                'In connection with a merger, acquisition, or sale of assets — you will be notified before your data is transferred',
-              ]}
-            />
-          </Section>
-
-          <Section icon={Lock} title="Data Security">
-            <p>
-              We implement industry-standard security measures to protect your data, including:
-            </p>
-            <BulletList
-              items={[
-                'End-to-end encryption for in-app messages',
-                'Encrypted storage for sensitive profile data and ID documents',
-                'Secure HTTPS connections for all data transmission',
-                'Access controls ensuring only authorised team members can access user data',
-                'Regular security audits and vulnerability assessments',
-              ]}
-            />
-            <p className="mt-3">
-              Despite these measures, no method of transmission over the internet is 100% secure. We
-              encourage you to use a strong, unique password and enable notifications for account
-              activity.
-            </p>
-          </Section>
-
-          <Section icon={UserCheck} title="Your Privacy Controls">
-            <p>You are in control of your data. Within the app you can:</p>
-            <BulletList
-              items={[
-                'Toggle who can see your online status and last seen time',
-                'Set profile visibility to "Everyone" or "Matches Only"',
-                'Disable read receipts on messages',
-                'Toggle location sharing with your roommate group',
-                'Block and unblock other users at any time',
-                'Request a full export of your personal data',
-                'Delete your account permanently (data is removed within 30 days)',
-              ]}
-            />
-          </Section>
-
-          <Section icon={Calendar} title="Data Retention">
-            <p>
-              We retain your personal data for as long as your account is active. When you delete your
-              account:
-            </p>
-            <BulletList
-              items={[
-                'Your profile is immediately hidden from other users',
-                'Your data is scheduled for permanent deletion within 30 days',
-                'Some anonymised, non-identifying data may be retained for analytics purposes',
-                'Messages in shared conversations may persist until the other user also deletes them',
-              ]}
-            />
-          </Section>
-
-          <Section icon={Mail} title="Contact Us">
-            <p>
-              If you have questions about this Privacy Policy, want to request your data, or need to
-              report a privacy concern, please reach out:
-            </p>
-            <div className="mt-4 bg-slate-50 rounded-2xl p-5 border border-slate-100">
-              <p className="font-semibold text-slate-800">Roomie</p>
-              <p className="mt-1">
-                Email:{' '}
-                <a href="mailto:support@roomieng.com" className="text-primary hover:underline">
-                  support@roomieng.com
-                </a>
+        <div className="max-w-6xl mx-auto grid gap-8 lg:grid-cols-[260px_1fr]">
+          {/* Table of contents - sticky sidebar on desktop */}
+          <aside className="hidden lg:block">
+            <div className="sticky top-24 rounded-2xl border border-slate-100 bg-white p-4 shadow-sm">
+              <p className="px-3 pb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">
+                On this page
               </p>
-              <p>
-                Website:{' '}
-                <a href="https://roomieng.com" className="text-primary hover:underline">
-                  roomieng.com
-                </a>
-              </p>
-              <p>Lagos, Nigeria</p>
+              <nav className="space-y-1">
+                {tocSections.map((section) => {
+                  const Icon = section.icon;
+                  return (
+                    <a
+                      key={section.id}
+                      href={`#${section.id}`}
+                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-slate-600 transition-colors hover:bg-primary/5 hover:text-primary"
+                    >
+                      <Icon className="h-4 w-4 flex-shrink-0 text-primary" />
+                      {section.title}
+                    </a>
+                  );
+                })}
+              </nav>
             </div>
-          </Section>
+          </aside>
 
-          {/* Footer note */}
-          <div className="mt-8 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400">
-            <span>© {new Date().getFullYear()} Roomie. All rights reserved.</span>
-            <Link href="/terms" className="text-primary hover:underline font-medium">
-              View Terms & Conditions →
-            </Link>
+          <div className="bg-white rounded-3xl shadow-sm border border-slate-100 p-8 md:p-12">
+
+            {/* Intro */}
+            <motion.p
+              className="text-slate-600 leading-relaxed mb-10 text-[15px] bg-primary/5 rounded-2xl p-5 border border-primary/10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              Welcome to Roomie ("we", "our", "us"). This Privacy Policy explains how we collect, use,
+              share, and protect your personal information when you use the Roomie mobile application and
+              website at{' '}
+              <a href="https://roomieng.com" className="text-primary font-medium hover:underline">
+                roomieng.com
+              </a>
+              . By using Roomie, you agree to the practices described in this policy.
+            </motion.p>
+
+            <Section id="information-we-collect" icon={Database} title="Information We Collect">
+              <SubHeading title="Information you provide directly" />
+              <p>When you register and use Roomie, we collect:</p>
+              <BulletList
+                items={[
+                  'Full name, email address, and phone number',
+                  'Government-issued ID (for identity verification)',
+                  'Profile photos and optional bio',
+                  'Lifestyle preferences, daily schedule, and roommate requirements',
+                  'Housing listing details (if you post a listing)',
+                  'Messages and communications with other users',
+                  'Financial information used within the bill-split feature',
+                ]}
+              />
+              <SubHeading title="Information collected automatically" />
+              <p>When you use the app, we also collect:</p>
+              <BulletList
+                items={[
+                  'Approximate location (for nearby search)',
+                  'Device type, operating system, and app version',
+                  'Usage data: screens visited, features used, tap interactions',
+                  'Crash reports and performance diagnostics',
+                ]}
+              />
+              <SubHeading title="Information from third parties" />
+              <p>
+                If you connect a social media account (Instagram, X/Twitter, etc.) for verification, we
+                receive basic profile data such as your username and profile picture from that platform.
+              </p>
+            </Section>
+
+            <Section id="how-we-use-your-information" icon={Eye} title="How We Use Your Information">
+              <p>We use your information to:</p>
+              <BulletList
+                items={[
+                  'Create and manage your Roomie account',
+                  'Match you with compatible roommates using our algorithm',
+                  'Display your profile to other users (based on your privacy settings)',
+                  'Enable in-app messaging, games, and community features',
+                  'Power the bill-split, chores, and home management tools',
+                  'Send you notifications about matches, messages, and app updates',
+                  'Verify your identity and detect fraudulent or unsafe activity',
+                  'Improve app performance, features, and the matching algorithm',
+                  'Comply with legal obligations',
+                ]}
+              />
+            </Section>
+
+            <Section id="how-we-share-your-information" icon={Share2} title="How We Share Your Information">
+              <p>
+                <strong>We do not sell your personal data.</strong> We may share information only in the
+                following circumstances:
+              </p>
+              <BulletList
+                items={[
+                  'With other Roomie users as part of your public or semi-private profile — controlled entirely by your Privacy & Security settings',
+                  'With trusted service providers who help us run the app (cloud hosting, analytics, push notifications) — they are bound by confidentiality agreements',
+                  'With law enforcement or regulatory bodies when required by applicable Nigerian law or a valid legal process',
+                  'In connection with a merger, acquisition, or sale of assets — you will be notified before your data is transferred',
+                ]}
+              />
+            </Section>
+
+            <Section id="data-security" icon={Lock} title="Data Security">
+              <p>
+                We implement industry-standard security measures to protect your data, including:
+              </p>
+              <BulletList
+                items={[
+                  'End-to-end encryption for in-app messages',
+                  'Encrypted storage for sensitive profile data and ID documents',
+                  'Secure HTTPS connections for all data transmission',
+                  'Access controls ensuring only authorised team members can access user data',
+                  'Regular security audits and vulnerability assessments',
+                ]}
+              />
+              <p className="mt-3">
+                Despite these measures, no method of transmission over the internet is 100% secure. We
+                encourage you to use a strong, unique password and enable notifications for account
+                activity.
+              </p>
+            </Section>
+
+            <Section id="your-privacy-controls" icon={UserCheck} title="Your Privacy Controls">
+              <p>You are in control of your data. Within the app you can:</p>
+              <BulletList
+                items={[
+                  'Toggle who can see your online status and last seen time',
+                  'Set profile visibility to "Everyone" or "Matches Only"',
+                  'Disable read receipts on messages',
+                  'Toggle location sharing with your roommate group',
+                  'Block and unblock other users at any time',
+                  'Request a full export of your personal data',
+                  'Delete your account permanently (data is removed within 30 days)',
+                ]}
+              />
+            </Section>
+
+            <Section id="data-retention" icon={Calendar} title="Data Retention">
+              <p>
+                We retain your personal data for as long as your account is active. When you delete your
+                account:
+              </p>
+              <BulletList
+                items={[
+                  'Your profile is immediately hidden from other users',
+                  'Your data is scheduled for permanent deletion within 30 days',
+                  'Some anonymised, non-identifying data may be retained for analytics purposes',
+                  'Messages in shared conversations may persist until the other user also deletes them',
+                ]}
+              />
+            </Section>
+
+            <Section id="contact-us" icon={Mail} title="Contact Us">
+              <p>
+                If you have questions about this Privacy Policy, want to request your data, or need to
+                report a privacy concern, please reach out:
+              </p>
+              <div className="mt-4 bg-slate-50 rounded-2xl p-5 border border-slate-100">
+                <p className="font-semibold text-slate-800">Roomie</p>
+                <p className="mt-1">
+                  Email:{' '}
+                  <a href="mailto:support@roomieng.com" className="text-primary hover:underline">
+                    support@roomieng.com
+                  </a>
+                </p>
+                <p>
+                  Website:{' '}
+                  <a href="https://roomieng.com" className="text-primary hover:underline">
+                    roomieng.com
+                  </a>
+                </p>
+                <p>Lagos, Nigeria</p>
+              </div>
+            </Section>
+
+            {/* Footer note */}
+            <div className="mt-8 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-400">
+              <span>© {new Date().getFullYear()} Roomie. All rights reserved.</span>
+              <Link href="/terms" className="text-primary hover:underline font-medium">
+                View Terms & Conditions →
+              </Link>
+            </div>
           </div>
         </div>
       </div>

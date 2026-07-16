@@ -1,54 +1,36 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 
-// ─── EDIT YOUR TEAM HERE ───────────────────────────────────────────────────
-// Replace name, role, dept, bio, and image for each member.
-// Images go in your /public folder — e.g. image: '/john.jpeg'
 const team = [
   {
     name: 'David',
     role: 'Founder & CEO',
     dept: 'Leadership',
-    bio: 'David founded Roomie with a single conviction — finding a home should feel human. He brings vision, hustle, and deep empathy for what people need when navigating one of life\'s biggest transitions.',
+    bio: "David founded Roomie with a single conviction — finding a home should feel human. He brings vision, hustle, and deep empathy for what people need when navigating one of life's biggest transitions.",
     image: '/Ceo.jpeg',
-    gradientFrom: '#2d9d9d',
-    gradientTo: '#1a6e6e',
-    tag: '#247d7d',
-    tagBg: '#e6f7f7',
   },
   {
     name: 'Braimoh-Igbo',
     role: 'Head of Growth',
     dept: 'Growth & Strategy',
-    bio: 'Ibrahim architects Roomie\'s growth engine — from go-to-market strategy to user acquisition. He\'s obsessed with sustainable loops that bring the right people to the platform.',
+    bio: "Ibrahim architects Roomie's growth engine — from go-to-market strategy to user acquisition. He's obsessed with sustainable loops that bring the right people to the platform.",
     image: '/igbo.jpeg',
-    gradientFrom: '#3dbdbd',
-    gradientTo: '#2d9d9d',
-    tag: '#247d7d',
-    tagBg: '#e6f7f7',
   },
   {
     name: 'Ahmed',
     role: 'Frontend Developer',
     dept: 'Engineering',
-    bio: 'Ahmed turns design into reality — pixel by pixel. He\'s the craftsman behind the interfaces you\'re interacting with, with a sharp eye for detail and a love for smooth, responsive UIs.',
+    bio: "Ahmed turns design into reality — pixel by pixel. He's the craftsman behind the interfaces you're interacting with, with a sharp eye for detail and a love for smooth, responsive UIs.",
     image: '/glitch.jpeg',
-    gradientFrom: '#1a6e6e',
-    gradientTo: '#0f4f4f',
-    tag: '#1a6e6e',
-    tagBg: '#d4f0f0',
   },
   {
-    name: 'Mercy ',
+    name: 'Mercy',
     role: 'Social Media Manager',
     dept: 'Marketing',
     bio: 'Mercy tells the Roomie story where people actually are. She builds community, drives conversation, and makes sure our voice online feels real, warm, and worth following.',
     image: '/mercy.jpeg',
-    gradientFrom: '#2d9d9d',
-    gradientTo: '#3dbdbd',
-    tag: '#247d7d',
-    tagBg: '#e6f7f7',
   },
   {
     name: 'Blessing',
@@ -56,302 +38,245 @@ const team = [
     dept: 'Operations',
     bio: 'Blessing keeps the engine running. From onboarding flows to day-to-day coordination, she ensures every moving part of Roomie operates with care, precision, and a personal touch.',
     image: '/Blessing.jpeg',
-    gradientFrom: '#4dcfcf',
-    gradientTo: '#2d9d9d',
-    tag: '#247d7d',
-    tagBg: '#e6f7f7',
   },
-  // ── PLACEHOLDER MEMBERS 6–10 — replace with real data ──
-//   {
-//     name: 'Team Member 6',
-//     role: 'Role / Title',
-//     dept: 'Department',
-//     bio: 'Add a short bio here — what this person does, what drives them, and what they bring to the Roomie team.',
-//     image: 'https://ui-avatars.com/api/?name=Team+Member+6&size=400&background=2d9d9d&color=ffffff&bold=true&font-size=0.33',
-//     gradientFrom: '#2d9d9d',
-//     gradientTo: '#1a6e6e',
-//     tag: '#247d7d',
-//     tagBg: '#e6f7f7',
-//   },
-//   {
-//     name: 'Team Member 7',
-//     role: 'Role / Title',
-//     dept: 'Department',
-//     bio: 'Add a short bio here — what this person does, what drives them, and what they bring to the Roomie team.',
-//     image: 'https://ui-avatars.com/api/?name=Team+Member+7&size=400&background=3dbdbd&color=ffffff&bold=true&font-size=0.33',
-//     gradientFrom: '#3dbdbd',
-//     gradientTo: '#2d9d9d',
-//     tag: '#247d7d',
-//     tagBg: '#e6f7f7',
-//   },
-//   {
-//     name: 'Team Member 8',
-//     role: 'Role / Title',
-//     dept: 'Department',
-//     bio: 'Add a short bio here — what this person does, what drives them, and what they bring to the Roomie team.',
-//     image: 'https://ui-avatars.com/api/?name=Team+Member+8&size=400&background=1a6e6e&color=ffffff&bold=true&font-size=0.33',
-//     gradientFrom: '#1a6e6e',
-//     gradientTo: '#0f4f4f',
-//     tag: '#1a6e6e',
-//     tagBg: '#d4f0f0',
-//   },
-//   {
-//     name: 'Team Member 9',
-//     role: 'Role / Title',
-//     dept: 'Department',
-//     bio: 'Add a short bio here — what this person does, what drives them, and what they bring to the Roomie team.',
-//     image: 'https://ui-avatars.com/api/?name=Team+Member+9&size=400&background=4dcfcf&color=ffffff&bold=true&font-size=0.33',
-//     gradientFrom: '#4dcfcf',
-//     gradientTo: '#2d9d9d',
-//     tag: '#247d7d',
-//     tagBg: '#e6f7f7',
-//   },
-//   {
-//     name: 'Team Member 10',
-//     role: 'Role / Title',
-//     dept: 'Department',
-//     bio: 'Add a short bio here — what this person does, what drives them, and what they bring to the Roomie team.',
-//     image: 'https://ui-avatars.com/api/?name=Team+Member+10&size=400&background=247d7d&color=ffffff&bold=true&font-size=0.33',
-//     gradientFrom: '#247d7d',
-//     gradientTo: '#1a6e6e',
-//     tag: '#1a6e6e',
-//     tagBg: '#d4f0f0',
-//   },
 ];
-// ─────────────────────────────────────────────────────────────────────────────
 
-function FlipCard({ member, index }: { member: typeof team[0]; index: number }) {
-  const [flipped, setFlipped] = useState(false);
+function useInView<T extends HTMLElement>(threshold = 0.15) {
+  const ref = useRef<T>(null);
   const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const gradient = `linear-gradient(135deg, ${member.gradientFrom} 0%, ${member.gradientTo} 100%)`;
-
-  return (
-    <div
-      ref={ref}
-      style={{
-        perspective: '1200px',
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.96)',
-        transition: `opacity 0.7s cubic-bezier(0.22,1,0.36,1) ${index * 80}ms, transform 0.7s cubic-bezier(0.22,1,0.36,1) ${index * 80}ms`,
-      }}
-    >
-      <div
-        className="relative w-full cursor-pointer"
-        style={{
-          height: 'clamp(260px, 55vw, 380px)',
-          transformStyle: 'preserve-3d',
-          transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-          transition: 'transform 0.65s cubic-bezier(0.4, 0, 0.2, 1)',
-        }}
-        onClick={() => setFlipped(f => !f)}
-        onMouseEnter={() => setFlipped(true)}
-        onMouseLeave={() => setFlipped(false)}
-      >
-        {/* ── FRONT ── */}
-        <div
-          className="absolute inset-0 rounded-2xl overflow-hidden"
-          style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
-        >
-          <img
-            src={member.image}
-            alt={member.name}
-            className="w-full h-full object-cover"
-            style={{ objectPosition: 'center 15%' }}
-          />
-
-          {/* Bottom scrim only */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background: 'linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.25) 38%, transparent 65%)',
-            }}
-          />
-
-          {/* Top teal bar */}
-          <div className="absolute top-0 left-0 right-0 h-1" style={{ background: gradient }} />
-
-          {/* Dept pill */}
-          <div
-            className="absolute top-3 right-3 px-2 py-0.5 rounded-full font-semibold"
-            style={{
-              background: 'rgba(0,0,0,0.38)',
-              color: '#fff',
-              border: '1px solid rgba(255,255,255,0.2)',
-              backdropFilter: 'blur(8px)',
-              fontSize: '10px',
-            }}
-          >
-            {member.dept}
-          </div>
-
-          {/* Name & role */}
-          <div className="absolute bottom-0 left-0 right-0 p-3 md:p-5">
-            <h3
-              className="text-white font-bold leading-tight"
-              style={{ fontSize: 'clamp(12px, 3vw, 17px)', textShadow: '0 1px 8px rgba(0,0,0,0.7)' }}
-            >
-              {member.name}
-            </h3>
-            <p
-              className="text-white/85 font-medium mt-0.5"
-              style={{ fontSize: 'clamp(10px, 2.2vw, 13px)', textShadow: '0 1px 6px rgba(0,0,0,0.6)' }}
-            >
-              {member.role}
-            </p>
-          </div>
-        </div>
-
-        {/* ── BACK ── */}
-        <div
-          className="absolute inset-0 rounded-2xl overflow-hidden bg-white"
-          style={{
-            backfaceVisibility: 'hidden',
-            WebkitBackfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)',
-          }}
-        >
-          {/* Gradient header */}
-          <div className="h-20 relative" style={{ background: gradient }}>
-            <div className="absolute -top-5 -right-5 w-24 h-24 rounded-full bg-white/10" />
-            <div className="absolute -bottom-3 -left-3 w-16 h-16 rounded-full bg-white/10" />
-            <div className="absolute -bottom-7 left-4">
-              <div
-                className="w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden shadow-lg"
-                style={{ outline: '3px solid white' }}
-              >
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover"
-                  style={{ objectPosition: 'center 15%' }}
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Body */}
-          <div className="pt-9 px-4 pb-4">
-            <h3
-              className="text-slate-800 font-bold leading-snug"
-              style={{ fontSize: 'clamp(11px, 2.5vw, 14px)' }}
-            >
-              {member.name}
-            </h3>
-            <span
-              className="inline-block mt-1 font-semibold px-2 py-0.5 rounded-full"
-              style={{ background: member.tagBg, color: member.tag, fontSize: '9px' }}
-            >
-              {member.role}
-            </span>
-            <p
-              className="text-slate-500 leading-relaxed mt-2"
-              style={{ fontSize: 'clamp(9px, 2vw, 11px)' }}
-            >
-              {member.bio}
-            </p>
-            <div className="mt-3 pt-2 border-t border-slate-100 flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: member.gradientFrom }} />
-              <span className="text-slate-400 font-medium" style={{ fontSize: '9px' }}>{member.dept}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => e.isIntersecting && setVisible(true), { threshold });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return { ref, visible };
 }
 
 export default function Team() {
-  const [headerVisible, setHeaderVisible] = useState(false);
-  const headerRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const [hovered, setHovered] = useState<number | null>(null);
+  const { ref: sectionRef, visible } = useInView<HTMLDivElement>(0.1);
+  const [cursor, setCursor] = useState({ x: 0, y: 0, show: false });
+  const stageRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setHeaderVisible(true); },
-      { threshold: 0.15 }
-    );
-    if (headerRef.current) observer.observe(headerRef.current);
-    return () => observer.disconnect();
+  const current = hovered ?? active;
+
+  const onMove = useCallback((e: React.MouseEvent) => {
+    const r = stageRef.current?.getBoundingClientRect();
+    if (!r) return;
+    setCursor({ x: e.clientX - r.left, y: e.clientY - r.top, show: true });
   }, []);
 
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden bg-slate-50">
-      {/* Ambient orbs */}
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          top: '-160px', right: '-120px',
-          width: '560px', height: '560px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(45,157,157,0.09) 0%, transparent 70%)',
-        }}
-      />
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          bottom: '-140px', left: '-100px',
-          width: '480px', height: '480px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(61,189,189,0.07) 0%, transparent 70%)',
-        }}
-      />
-
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-
-        {/* Header */}
-        <div
-          ref={headerRef}
-          className="text-center mb-12 md:mb-16"
-          style={{
-            opacity: headerVisible ? 1 : 0,
-            transform: headerVisible ? 'none' : 'translateY(28px)',
-            transition: 'opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1)',
-          }}
-        >
+    <section className="relative overflow-hidden py-20 md:py-16">
+      <div ref={sectionRef} className="container relative z-10 mx-auto px-5 md:px-6">
+        {/* ── Header: left-aligned, editorial ── */}
+        <div className="mx-auto max-w-6xl">
           <div
-            className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full bg-white shadow-sm"
-            style={{ border: '1px solid rgba(45,157,157,0.25)' }}
+            className="flex flex-col gap-6 border-b border-slate-200 pb-10 md:flex-row md:items-end md:justify-between"
+            style={{
+              opacity: visible ? 1 : 0,
+              transform: visible ? 'none' : 'translateY(24px)',
+              transition: 'opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1)',
+            }}
           >
-            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#2d9d9d' }} />
-            <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: '#2d9d9d' }}>
-              The Team
-            </span>
+            <div>
+              <div className="mb-5 flex items-center gap-2.5">
+                <span className="relative flex h-1.5 w-1.5">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
+                </span>
+                <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-primary">
+                  The Team
+                </span>
+              </div>
+              <h2 className="text-balance text-4xl font-bold leading-[0.95] tracking-tight text-slate-900 sm:text-5xl md:text-7xl">
+                The people
+                <br />
+                <span className="text-slate-300">building</span>{' '}
+                <span className="text-primary">Roomie</span>
+              </h2>
+            </div>
+            <p className="max-w-xs text-pretty text-base leading-relaxed text-slate-500 md:text-right">
+              A tight-knit team united by one belief — finding a place to call home should be safe,
+              simple, and human.
+            </p>
           </div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-800 leading-tight mb-5">
-            Meet the people
-            <br />
-            <span
-              className="bg-clip-text text-transparent"
-              style={{ backgroundImage: 'linear-gradient(135deg, #2d9d9d 0%, #3dbdbd 60%, #1a6e6e 100%)' }}
+          {/* ── Interactive roster ── */}
+          <div
+            ref={stageRef}
+            onMouseMove={onMove}
+            onMouseLeave={() => {
+              setHovered(null);
+              setCursor((c) => ({ ...c, show: false }));
+            }}
+            className="relative grid gap-10 pt-10 lg:grid-cols-[1fr_minmax(0,380px)] lg:gap-16"
+          >
+            {/* Floating cursor preview (desktop) */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute z-30 hidden lg:block"
+              style={{
+                left: cursor.x,
+                top: cursor.y,
+                transform: `translate(-50%, -50%) scale(${cursor.show && hovered !== null ? 1 : 0.6})`,
+                opacity: cursor.show && hovered !== null ? 1 : 0,
+                transition: 'opacity .35s ease, transform .35s cubic-bezier(.22,1,.36,1)',
+              }}
             >
-              building Roomie
-            </span>
-          </h2>
+              <div className="h-32 w-24 overflow-hidden rounded-xl border border-white/40 shadow-2xl shadow-slate-900/25">
+                {hovered !== null && (
+                  <img
+                    src={team[hovered].image}
+                    alt=""
+                    className="h-full w-full object-cover"
+                    style={{ objectPosition: 'center 15%' }}
+                  />
+                )}
+              </div>
+            </div>
 
-          <p className="text-base md:text-lg text-slate-400 max-w-xl mx-auto leading-relaxed">
-            A tight-knit team united by one belief — finding a place to call home should be safe, simple, and human.
-          </p>
+            {/* Name list */}
+            <ul className="relative">
+              {team.map((m, i) => {
+                const isActive = current === i;
+                return (
+                  <li
+                    key={m.name}
+                    style={{
+                      opacity: visible ? 1 : 0,
+                      transform: visible ? 'none' : 'translateY(20px)',
+                      transition: `opacity .6s cubic-bezier(.22,1,.36,1) ${i * 90}ms, transform .6s cubic-bezier(.22,1,.36,1) ${i * 90}ms`,
+                    }}
+                  >
+                    <button
+                      onMouseEnter={() => setHovered(i)}
+                      onClick={() => setActive(i)}
+                      className="group relative flex w-full items-center gap-4 border-b border-slate-100 py-6 text-left md:gap-6 md:py-8"
+                    >
+                      {/* sweep fill */}
+                      <span
+                        aria-hidden
+                        className="absolute inset-y-0 -left-4 -right-4 -z-10 origin-left rounded-xl bg-slate-50 transition-transform duration-500 ease-[cubic-bezier(.22,1,.36,1)]"
+                        style={{ transform: isActive ? 'scaleX(1)' : 'scaleX(0)' }}
+                      />
+
+                      <span
+                        className="w-8 flex-shrink-0 text-[11px] font-semibold tabular-nums tracking-[0.15em] transition-colors duration-300"
+                        style={{ color: isActive ? 'var(--primary, #2d9d9d)' : '#cbd5e1' }}
+                      >
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+
+                      {/* mobile thumb */}
+                      <span className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-lg border border-slate-200 lg:hidden">
+                        <img
+                          src={m.image}
+                          alt=""
+                          className="h-full w-full object-cover"
+                          style={{ objectPosition: 'center 15%' }}
+                        />
+                      </span>
+
+                      <span className="min-w-0 flex-1">
+                        <span
+                          className="block truncate text-xl font-bold tracking-tight transition-all duration-400 ease-[cubic-bezier(.22,1,.36,1)] md:text-3xl"
+                          style={{
+                            color: isActive ? '#0f172a' : '#94a3b8',
+                            transform: isActive ? 'translateX(8px)' : 'none',
+                          }}
+                        >
+                          {m.name}
+                        </span>
+                        <span
+                          className="mt-0.5 block truncate text-xs text-slate-400 transition-all duration-400 md:text-sm"
+                          style={{ transform: isActive ? 'translateX(8px)' : 'none' }}
+                        >
+                          {m.role}
+                        </span>
+                      </span>
+
+                      <ArrowUpRight
+                        className="h-5 w-5 flex-shrink-0 text-primary transition-all duration-400"
+                        strokeWidth={1.75}
+                        style={{
+                          opacity: isActive ? 1 : 0,
+                          transform: isActive ? 'none' : 'translate(-8px, 8px)',
+                        }}
+                      />
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+
+            {/* Sticky detail panel (desktop) */}
+            <aside className="hidden lg:block">
+              <div className="sticky top-28">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-[24px] border border-slate-200">
+                  {team.map((m, i) => (
+                    <img
+                      key={m.name}
+                      src={m.image}
+                      alt={m.name}
+                      className="absolute inset-0 h-full w-full object-cover transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)]"
+                      style={{
+                        objectPosition: 'center 15%',
+                        opacity: current === i ? 1 : 0,
+                        transform: current === i ? 'scale(1)' : 'scale(1.06)',
+                      }}
+                    />
+                  ))}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/10 to-transparent" />
+                  <div className="absolute inset-0 rounded-[24px] ring-1 ring-inset ring-white/10" />
+
+                  <div className="absolute right-4 top-4 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-white backdrop-blur-md">
+                    {team[current].dept}
+                  </div>
+
+                  <div key={current} className="absolute inset-x-0 bottom-0 p-6">
+                    <h3
+                      className="text-2xl font-bold tracking-tight text-white"
+                      style={{ animation: 'roomieRise .5s cubic-bezier(.22,1,.36,1) both' }}
+                    >
+                      {team[current].name}
+                    </h3>
+                    <p
+                      className="mt-1 text-sm font-medium text-primary"
+                      style={{ animation: 'roomieRise .5s cubic-bezier(.22,1,.36,1) .06s both' }}
+                    >
+                      {team[current].role}
+                    </p>
+                  </div>
+                </div>
+
+                <p
+                  key={`bio-${current}`}
+                  className="mt-6 text-sm leading-relaxed text-slate-600"
+                  style={{ animation: 'roomieRise .5s cubic-bezier(.22,1,.36,1) .1s both' }}
+                >
+                  {team[current].bio}
+                </p>
+              </div>
+            </aside>
+
+            {/* Mobile bio */}
+            <p key={`m-bio-${current}`} className="text-sm leading-relaxed text-slate-600 lg:hidden">
+              {team[current].bio}
+            </p>
+          </div>
         </div>
-
-        {/* ── GRID: 2 cols mobile → 5 cols desktop, always even rows ── */}
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 lg:gap-5">
-          {team.map((member, i) => (
-            <FlipCard key={member.name} member={member} index={i} />
-          ))}
-        </div>
-
       </div>
+
+      <style jsx>{`
+        @keyframes roomieRise {
+          from { opacity: 0; transform: translateY(12px); }
+          to { opacity: 1; transform: none; }
+        }
+      `}</style>
     </section>
   );
 }
