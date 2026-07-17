@@ -36,7 +36,7 @@ const steps = [
 
 export default function HowItWorks({ onJoinWaitlist }: { onJoinWaitlist: () => void }) {
   return (
-    <section className="relative overflow-hidden py-24 sm:py-16">
+    <section className="relative overflow-hidden py-7 sm:py-16">
       <div className="container relative z-10 mx-auto px-6">
         {/* Header */}
         <motion.div

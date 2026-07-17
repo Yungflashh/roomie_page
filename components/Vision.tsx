@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Compass, Globe2, Sparkles } from 'lucide-react';
+import { Compass, Globe2, BrainCircuit } from 'lucide-react';
 
 const pillars = [
   {
@@ -19,7 +19,7 @@ const pillars = [
       'From student housing to first apartments, our vision is a trusted roommate network in every city we touch.',
   },
   {
-    icon: Sparkles,
+    icon: BrainCircuit,
     label: 'Technology',
     title: 'Living, Reimagined',
     description:
@@ -29,7 +29,7 @@ const pillars = [
 
 export default function Vision() {
   return (
-    <section id="vision" className="relative scroll-mt-28 overflow-hidden py-24 sm:py-32">
+    <section id="vision" className="relative scroll-mt-28 overflow-hidden py-7 sm:py-16">
       <div className="container relative z-10 mx-auto px-6">
         <div className="mx-auto max-w-6xl">
           {/* Header */}

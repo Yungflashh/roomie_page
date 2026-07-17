@@ -15,14 +15,14 @@ const features = [
 ];
 
 const stats = [
-  { value: '50K+', label: 'Verified users' },
+  { value: '300+', label: 'Verified users' },
   { value: '98%', label: 'Match rate' },
   { value: '4.9', label: 'App rating' },
 ];
 
 export default function Features() {
   return (
-    <section className="relative overflow-hidden bg-slate-50 py-24 sm:py-16">
+    <section className="relative overflow-hidden bg-slate-50 py-7 sm:py-16">
       {/* Ambient background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/2 top-0 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]" />

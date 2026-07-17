@@ -31,7 +31,7 @@ export default function Home() {
       <Collaboration onJoinWaitlist={openWaitlist} />
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden py-24 sm:py-16">
+      <section className="relative overflow-hidden py-7 sm:py-16">
         <div className="container relative z-10 mx-auto px-6">
           <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[36px] bg-primary px-6 py-20 text-center sm:px-12 sm:py-28">
             {/* Texture */}

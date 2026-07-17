@@ -47,6 +47,13 @@ export default function Navbar({ onJoinWaitlist }: { onJoinWaitlist: () => void 
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
+
   return (
     <>
       <motion.header
@@ -138,54 +145,89 @@ export default function Navbar({ onJoinWaitlist }: { onJoinWaitlist: () => void 
         </nav>
       </motion.header>
 
-      {/* Mobile menu - Ultra Glass Panel */}
+      {/* Mobile menu - slide-in sidebar */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -12, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -12, scale: 0.97 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-x-4 top-24 z-40 rounded-3xl border border-white/[0.25] bg-white/[0.12] p-3 shadow-[0_24px_50px_rgba(0,0,0,0.15),inset_0_1px_1px_rgba(255,255,255,0.4)] backdrop-blur-2xl md:hidden"
-            style={{
-              backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%)'
-            }}
-          >
-            {/* Mobile Glare effect */}
-            <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl">
-              <div className="absolute -top-1/2 left-0 right-0 h-full bg-gradient-to-b from-white/20 to-transparent" />
-            </div>
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-40 bg-slate-900/50 backdrop-blur-sm md:hidden"
+              onClick={() => setMobileOpen(false)}
+            />
 
-            <div className="relative z-10 flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(link.href);
-                  }}
-                  className={`rounded-2xl px-4 py-3 text-base font-medium transition-all ${
-                    active === link.href 
-                      ? 'bg-primary text-white shadow-[0_4px_12px_rgba(45,157,157,0.3)]' 
-                      : 'text-slate-800 hover:bg-white/[0.15]'
-                  }`}
+            {/* Sidebar panel */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed inset-y-0 right-0 z-50 flex w-[82%] max-w-xs flex-col border-l border-white/[0.25] bg-white/[0.18] p-6 shadow-[-24px_0_50px_rgba(0,0,0,0.2),inset_1px_0_1px_rgba(255,255,255,0.4)] backdrop-blur-2xl md:hidden"
+              style={{
+                backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.03) 100%)',
+              }}
+            >
+              {/* Glare effect */}
+              <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                <div className="absolute -top-1/2 left-0 right-0 h-full bg-gradient-to-b from-white/25 to-transparent" />
+              </div>
+
+              {/* Header row: logo + close */}
+              <div className="relative z-10 mb-10 flex items-center justify-between">
+                <div className="flex items-baseline gap-0.5">
+                  <img src="/roomie-logo-transparent-cropped.png" alt="Roomie" className="h-7 w-auto" />
+                  <span className="text-2xl font-bold leading-none tracking-tight text-[#075056]">
+                    oomie
+                  </span>
+                </div>
+                <button
+                  onClick={() => setMobileOpen(false)}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.25] bg-white/[0.15] text-slate-800 shadow-[inset_0_1px_1px_rgba(255,255,255,0.3)] backdrop-blur-md"
+                  aria-label="Close menu"
                 >
-                  {link.label}
-                </a>
-              ))}
-              <button
-                onClick={() => {
-                  setMobileOpen(false);
-                  onJoinWaitlist();
-                }}
-                className="mt-2 inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3 font-semibold text-white shadow-[0_4px_16px_rgba(45,157,157,0.35)]"
-              >
-                Join Waitlist
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
-          </motion.div>
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              {/* Nav links */}
+              <div className="relative z-10 flex flex-col gap-1">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(link.href);
+                    }}
+                    className={`rounded-2xl px-4 py-3.5 text-base font-medium transition-all ${
+                      active === link.href
+                        ? 'bg-primary text-white shadow-[0_4px_12px_rgba(45,157,157,0.3)]'
+                        : 'text-slate-800 hover:bg-white/[0.15]'
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+
+              {/* CTA pinned to bottom */}
+              <div className="relative z-10 mt-auto pt-6">
+                <button
+                  onClick={() => {
+                    setMobileOpen(false);
+                    onJoinWaitlist();
+                  }}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3.5 font-semibold text-white shadow-[0_4px_16px_rgba(45,157,157,0.35)]"
+                >
+                  Join Waitlist
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

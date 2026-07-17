@@ -32,7 +32,7 @@ const commitments = [
 
 export default function Mission() {
   return (
-    <section id="mission" className="relative scroll-mt-28 overflow-hidden py-24 sm:py-16">
+    <section id="mission" className="relative scroll-mt-28 overflow-hidden py-7 sm:py-16">
       <div className="container relative z-10 mx-auto px-6">
         <div className="mx-auto max-w-6xl">
           {/* Header */}
