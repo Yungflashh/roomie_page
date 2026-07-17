@@ -4,14 +4,14 @@ import { motion } from 'framer-motion';
 import { Heart, Home, Shield, Users, Calendar, DollarSign, Gamepad2, MessageCircle, LayoutGrid, ArrowUpRight } from 'lucide-react';
 
 const features = [
-  { icon: Heart, title: 'Smart Matching', description: 'Our algorithm matches you with compatible roommates based on lifestyle, interests, and preferences.', accent: 'from-rose-500/20 to-rose-500/0' },
-  { icon: Home, title: 'Find Housing', description: 'Browse verified listings and connect directly with property owners and roommates.', accent: 'from-amber-500/20 to-amber-500/0' },
-  { icon: Shield, title: 'Verified & Secure', description: 'Every user is verified with ID and social media. Your safety is our top priority.', accent: 'from-emerald-500/20 to-emerald-500/0' },
-  { icon: MessageCircle, title: 'Connect & Bond', description: 'Chat, play games, and build friendships before moving in together.', accent: 'from-sky-500/20 to-sky-500/0' },
-  { icon: DollarSign, title: 'Split Expenses', description: 'Easily track and split bills, rent, and shared expenses with built-in tools.', accent: 'from-lime-500/20 to-lime-500/0' },
-  { icon: Calendar, title: 'Shared Tasks', description: 'Coordinate chores, schedules, and responsibilities with your roommates.', accent: 'from-violet-500/20 to-violet-500/0' },
-  { icon: Gamepad2, title: 'Fun Activities', description: 'Play games, join events, and create lasting memories with your roommates.', accent: 'from-fuchsia-500/20 to-fuchsia-500/0' },
-  { icon: Users, title: 'Community', description: 'Join a vibrant community of verified users looking for genuine connections.', accent: 'from-cyan-500/20 to-cyan-500/0' },
+  { icon: Heart, title: 'Smart Matching', description: 'Our algorithm matches you with compatible roommates based on lifestyle, interests, and preferences.' },
+  { icon: Home, title: 'Find Housing', description: 'Browse verified listings and connect directly with property owners and roommates.' },
+  { icon: Shield, title: 'Verified & Secure', description: 'Every user is verified with ID and social media. Your safety is our top priority.' },
+  { icon: MessageCircle, title: 'Connect & Bond', description: 'Chat, play games, and build friendships before moving in together.' },
+  { icon: DollarSign, title: 'Split Expenses', description: 'Easily track and split bills, rent, and shared expenses with built-in tools.' },
+  { icon: Calendar, title: 'Shared Tasks', description: 'Coordinate chores, schedules, and responsibilities with your roommates.' },
+  { icon: Gamepad2, title: 'Fun Activities', description: 'Play games, join events, and create lasting memories with your roommates.' },
+  { icon: Users, title: 'Community', description: 'Join a vibrant community of verified users looking for genuine connections.' },
 ];
 
 const stats = [
@@ -25,8 +25,6 @@ export default function Features() {
     <section className="relative overflow-hidden bg-slate-50 py-7 sm:py-16">
       {/* Ambient background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-0 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]" />
-        <div className="absolute bottom-0 right-0 h-[420px] w-[420px] translate-x-1/3 rounded-full bg-fuchsia-400/10 blur-[110px]" />
         <div
           className="absolute inset-0 opacity-[0.35]"
           style={{
@@ -53,10 +51,7 @@ export default function Features() {
             <span className="text-sm font-medium tracking-wide text-slate-700">What You Get</span>
           </div>
           <h2 className="text-balance text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
-            Everything you need,{' '}
-            <span className="bg-gradient-to-r from-primary via-primary to-primary bg-clip-text text-transparent">
-              in one place
-            </span>
+            Everything you need, <span className="text-primary">in one place</span>
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-slate-600 sm:text-xl">
             Roomie brings together all the tools you need to find roommates, manage your home, and build lasting friendships.
@@ -78,7 +73,7 @@ export default function Features() {
                 alt="A group of roommates hanging out together on a couch in their shared apartment"
                 className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+              <div className="absolute inset-0 bg-slate-950/45" />
               <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
                 <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 backdrop-blur-md">
                   <span className="relative flex h-1.5 w-1.5">
@@ -106,7 +101,7 @@ export default function Features() {
                   transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
                 >
                   <img src={img.src} alt={img.alt} className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.08]" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 to-transparent" />
+                  <div className="absolute inset-0 bg-slate-950/40" />
                   <h4 className="absolute inset-x-0 bottom-0 p-4 text-sm font-semibold text-white sm:text-base">{img.label}</h4>
                 </motion.div>
               ))}
@@ -142,7 +137,6 @@ export default function Features() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
                 >
-                  <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${feature.accent} opacity-0 transition-opacity duration-300 group-hover:opacity-100`} />
                   <ArrowUpRight className="absolute right-4 top-4 h-4 w-4 -translate-y-1 text-slate-400 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100" />
 
                   <div className="relative">
