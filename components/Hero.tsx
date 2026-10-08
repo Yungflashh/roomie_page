@@ -59,9 +59,9 @@ export default function Hero({ onJoinWaitlist }: { onJoinWaitlist: () => void })
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            Find Your Perfect
+            Find a Roommate
             <br />
-            <span className="text-primary">Roommate</span>
+            <span className="text-primary">You Can Trust</span>
           </motion.h1>
 
           {/* Subheading */}
@@ -71,8 +71,8 @@ export default function Hero({ onJoinWaitlist }: { onJoinWaitlist: () => void })
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            Match with verified roommates, discover housing, and build meaningful connections.
-            All in one secure platform.
+            Meet verified people who are looking for someone to live with, see how well you'd get on,
+            and find a place together.
           </motion.p>
 
           {/* CTA Button */}
@@ -88,31 +88,6 @@ export default function Hero({ onJoinWaitlist }: { onJoinWaitlist: () => void })
               Join the Waitlist
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
-          </motion.div>
-
-          {/* Trust indicators */}
-          <motion.div
-            className="mt-16 flex flex-wrap justify-center gap-8 text-slate-600"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.8 }}
-          >
-            {[
-              { number: '500+', label: 'Early Signups' },
-              { number: '100%', label: 'Verified Users' },
-              { number: '4.9', label: 'Beta Rating' },
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                className="text-center"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.2 + index * 0.1 }}
-              >
-                <div className="text-3xl font-bold text-primary">{stat.number}</div>
-                <div className="text-sm">{stat.label}</div>
-              </motion.div>
-            ))}
           </motion.div>
         </motion.div>
       </div>

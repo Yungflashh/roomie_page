@@ -27,7 +27,7 @@ export default function Footer() {
               >
                 roomie
               </motion.h3>
-              <p className="text-slate-400">Find your perfect roommate</p>
+              <p className="text-slate-400">Find a roommate you can trust</p>
             </div>
 
             {/* Social links */}
