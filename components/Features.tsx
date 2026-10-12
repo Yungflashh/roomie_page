@@ -1,48 +1,38 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Heart, Home, Shield, Users, Calendar, DollarSign, Gamepad2, MessageCircle } from 'lucide-react';
+import { Heart, Home, Shield, Users, Gamepad2, MessageCircle } from 'lucide-react';
 
 const features = [
   {
     icon: Heart,
     title: 'Smart Matching',
-    description: 'Our algorithm matches you with compatible roommates based on lifestyle, interests, and preferences.',
+    description: 'We compare habits, schedules and preferences to show you people you are likely to get along with.',
   },
   {
     icon: Home,
     title: 'Find Housing',
-    description: 'Browse verified listings and connect directly with property owners and roommates.',
+    description: 'Browse rooms and apartments, and talk directly to landlords and people with a space to fill.',
   },
   {
     icon: Shield,
-    title: 'Verified & Secure',
-    description: 'Every user is verified with ID and social media. Your safety is our top priority.',
+    title: 'Verified Profiles',
+    description: 'Users verify their ID and can link their social accounts, so you know who you are talking to.',
   },
   {
     icon: MessageCircle,
-    title: 'Connect & Bond',
-    description: 'Chat, play games, and build friendships before moving in together.',
-  },
-  {
-    icon: DollarSign,
-    title: 'Split Expenses',
-    description: 'Easily track and split bills, rent, and shared expenses with built-in tools.',
-  },
-  {
-    icon: Calendar,
-    title: 'Shared Tasks',
-    description: 'Coordinate chores, schedules, and responsibilities with your roommates.',
+    title: 'Get to Know People',
+    description: 'Chat and play quick games together before you decide to share a home.',
   },
   {
     icon: Gamepad2,
-    title: 'Fun Activities',
-    description: 'Play games, join events, and create lasting memories with your roommates.',
+    title: 'Events',
+    description: 'Find local events and meet other people who are also looking for a place.',
   },
   {
     icon: Users,
     title: 'Community',
-    description: 'Join a vibrant community of verified users looking for genuine connections.',
+    description: 'Students and young professionals across Nigeria, all looking for the same thing you are.',
   },
 ];
 
@@ -62,7 +52,7 @@ export default function Features() {
             Everything You Need
           </h2>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Roomie brings together all the tools you need to find roommates, manage your home, and build lasting friendships.
+            Find a roommate, find a place, and settle in together, all in one app.
           </p>
         </motion.div>
 
@@ -87,8 +77,8 @@ export default function Features() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-8">
-              <h3 className="text-2xl font-bold text-white mb-2">Connect & Collaborate</h3>
-              <p className="text-white/90">Build genuine connections with verified roommates</p>
+              <h3 className="text-2xl font-bold text-white mb-2">Meet Before You Move</h3>
+              <p className="text-white/90">Chat with verified people before you decide</p>
             </div>
           </motion.div>
 
@@ -107,7 +97,7 @@ export default function Features() {
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <h4 className="text-lg font-bold text-white mb-1">Find Your Space</h4>
-                <p className="text-sm text-white/90">Discover perfect homes</p>
+                <p className="text-sm text-white/90">Browse rooms and apartments</p>
               </div>
             </motion.div>
 
@@ -124,14 +114,14 @@ export default function Features() {
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6">
                 <h4 className="text-lg font-bold text-white mb-1">Verified & Safe</h4>
-                <p className="text-sm text-white/90">100% secure platform</p>
+                <p className="text-sm text-white/90">ID-verified profiles</p>
               </div>
             </motion.div>
           </div>
         </motion.div>
 
         {/* Features grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
