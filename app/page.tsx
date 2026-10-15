@@ -16,7 +16,7 @@ export default function Home() {
     <main className="overflow-hidden">
       <Hero onJoinWaitlist={() => setIsWaitlistOpen(true)} />
       <Features />
-      <HowItWorks />
+      <HowItWorks onJoinWaitlist={() => setIsWaitlistOpen(true)} />
       <Security />
       <Team/>
       
@@ -30,16 +30,16 @@ export default function Home() {
         
         <div className="container mx-auto px-6 text-center relative z-10">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Ready to Find Your Perfect Match?
+            Ready to Find Your Next Roommate?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Join thousands of others waiting for Roomie to launch. Be the first to know when we go live!
+            Join the waitlist and we'll let you know as soon as Roomie is live.
           </p>
           <button
             onClick={() => setIsWaitlistOpen(true)}
             className="px-8 py-4 bg-white text-primary rounded-full text-lg font-semibold hover:bg-slate-50 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
           >
-            Join the Waitlist Now
+            Join the Waitlist
           </button>
         </div>
       </section>

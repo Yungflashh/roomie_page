@@ -7,30 +7,30 @@ const steps = [
   {
     icon: UserPlus,
     title: 'Create Profile',
-    description: 'Sign up and verify your identity with ID and social media for a secure experience.',
+    description: 'Sign up, tell us how you like to live, and verify your ID.',
     image: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=800&h=600&fit=crop',
   },
   {
     icon: Search,
-    title: 'Match & Discover',
-    description: 'Browse verified roommates and housing options that match your preferences.',
+    title: 'Browse Matches',
+    description: 'See people and places that fit your budget, location and lifestyle.',
     image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop',
   },
   {
     icon: MessageSquare,
-    title: 'Connect & Bond',
-    description: 'Chat, play games, and get to know potential roommates before committing.',
+    title: 'Start Chatting',
+    description: 'Message the people you like and get a feel for each other before you commit.',
     image: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&h=600&fit=crop',
   },
   {
     icon: Home,
     title: 'Move In Together',
-    description: 'Find your perfect match and start your shared living journey with confidence.',
+    description: 'Once you have found the right person, agree on the details and move in.',
     image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop',
   },
 ];
 
-export default function HowItWorks() {
+export default function HowItWorks({ onJoinWaitlist }: { onJoinWaitlist: () => void }) {
   return (
     <section className="py-24 bg-slate-50 relative overflow-hidden">
       {/* Background decorative elements */}
@@ -52,7 +52,7 @@ export default function HowItWorks() {
             How It Works
           </h2>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Finding your perfect roommate is simple with Roomie
+            Four steps from sign-up to move-in
           </p>
         </motion.div>
 
@@ -180,14 +180,15 @@ export default function HowItWorks() {
           transition={{ duration: 0.6 }}
         >
           <p className="text-lg text-slate-600 mb-6">
-            Ready to find your perfect roommate?
+            Ready to start looking?
           </p>
           <motion.button
+            onClick={onJoinWaitlist}
             className="px-8 py-4 bg-primary text-white rounded-full text-lg font-semibold hover:bg-primary-dark transition-all duration-300 shadow-lg hover:shadow-xl"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Get Started Now
+            Get Started
           </motion.button>
         </motion.div>
       </div>
