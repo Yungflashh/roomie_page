@@ -7,32 +7,32 @@ const securityFeatures = [
   {
     icon: UserCheck,
     title: 'ID Verification',
-    description: 'Every user must verify their identity with government-issued ID.',
+    description: 'Users verify their identity with a government-issued ID.',
   },
   {
     icon: Eye,
     title: 'Social Media Check',
-    description: 'Connect social accounts for additional verification and authenticity.',
+    description: 'Link Instagram, X, LinkedIn and other accounts so people can see you are real.',
   },
   {
     icon: FileCheck,
-    title: 'Property Verification',
-    description: 'All housing listings are verified for legitimacy and accuracy.',
+    title: 'Listing Reports',
+    description: 'Spot a listing that looks wrong? Report it and our team will review it.',
   },
   {
     icon: Lock,
-    title: 'Secure Platform',
-    description: 'End-to-end encryption keeps your conversations and data private.',
+    title: 'Secure Connections',
+    description: 'Everything you send through Roomie travels over an encrypted connection.',
   },
   {
     icon: Shield,
-    title: 'Background Checks',
-    description: 'Optional background screening for extra peace of mind.',
+    title: 'Block and Report',
+    description: 'Block anyone at any time and report bad behaviour to our moderation team.',
   },
   {
     icon: CheckCircle2,
-    title: 'Trusted Community',
-    description: 'Rating system ensures accountability and trust within the community.',
+    title: 'Roommate Reviews',
+    description: 'People who have lived with someone can review them, so you know what to expect.',
   },
 ];
 
@@ -73,10 +73,10 @@ export default function Security() {
               <Shield className="w-10 h-10 text-primary" />
             </motion.div>
             <h2 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6">
-              Safety First, Always
+              Built Around Safety
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              We take your security seriously. Every user and listing goes through rigorous verification to ensure you can find roommates with complete confidence.
+              You're deciding who to live with, so you should know who you're talking to. Here is how we keep Roomie safe.
             </p>
           </motion.div>
 
@@ -105,19 +105,6 @@ export default function Security() {
               );
             })}
           </div>
-
-          {/* Trust badge */}
-          <motion.div
-            className="mt-16 text-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
-          >
-            <p className="text-slate-600 text-lg">
-              <span className="font-semibold text-primary">100%</span> of our users are verified
-            </p>
-          </motion.div>
         </div>
       </div>
     </section>
