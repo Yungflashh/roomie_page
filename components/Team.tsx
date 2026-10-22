@@ -2,15 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-// ─── EDIT YOUR TEAM HERE ───────────────────────────────────────────────────
-// Replace name, role, dept, bio, and image for each member.
-// Images go in your /public folder — e.g. image: '/john.jpeg'
+// Team members shown on the landing page. Images live in /public.
 const team = [
   {
     name: 'David',
     role: 'Founder & CEO',
     dept: 'Leadership',
-    bio: 'David founded Roomie with a single conviction — finding a home should feel human. He brings vision, hustle, and deep empathy for what people need when navigating one of life\'s biggest transitions.',
+    bio: 'David started Roomie because finding a home and someone to share it with should not be this stressful. He leads the company and the product.',
     image: '/Ceo.jpeg',
     gradientFrom: '#2d9d9d',
     gradientTo: '#1a6e6e',
@@ -21,7 +19,7 @@ const team = [
     name: 'Braimoh-Igbo',
     role: 'Head of Growth',
     dept: 'Growth & Strategy',
-    bio: 'Ibrahim architects Roomie\'s growth engine — from go-to-market strategy to user acquisition. He\'s obsessed with sustainable loops that bring the right people to the platform.',
+    bio: 'Ibrahim leads growth at Roomie, from launch strategy to bringing new users onto the platform.',
     image: '/igbo.jpeg',
     gradientFrom: '#3dbdbd',
     gradientTo: '#2d9d9d',
@@ -32,7 +30,7 @@ const team = [
     name: 'Ahmed',
     role: 'Frontend Developer',
     dept: 'Engineering',
-    bio: 'Ahmed turns design into reality — pixel by pixel. He\'s the craftsman behind the interfaces you\'re interacting with, with a sharp eye for detail and a love for smooth, responsive UIs.',
+    bio: 'Ahmed builds the screens you use in the app and on this site. He cares about the small details that make an app feel quick and easy to use.',
     image: '/glitch.jpeg',
     gradientFrom: '#1a6e6e',
     gradientTo: '#0f4f4f',
@@ -43,7 +41,7 @@ const team = [
     name: 'Mercy ',
     role: 'Social Media Manager',
     dept: 'Marketing',
-    bio: 'Mercy tells the Roomie story where people actually are. She builds community, drives conversation, and makes sure our voice online feels real, warm, and worth following.',
+    bio: 'Mercy runs Roomie\'s social media. She looks after our online community and keeps the conversation going.',
     image: '/mercy.jpeg',
     gradientFrom: '#2d9d9d',
     gradientTo: '#3dbdbd',
@@ -54,71 +52,14 @@ const team = [
     name: 'Blessing',
     role: 'Asst. Operations Manager',
     dept: 'Operations',
-    bio: 'Blessing keeps the engine running. From onboarding flows to day-to-day coordination, she ensures every moving part of Roomie operates with care, precision, and a personal touch.',
+    bio: 'Blessing handles day-to-day operations, from onboarding new users to keeping the team coordinated.',
     image: '/Blessing.jpeg',
     gradientFrom: '#4dcfcf',
     gradientTo: '#2d9d9d',
     tag: '#247d7d',
     tagBg: '#e6f7f7',
   },
-  // ── PLACEHOLDER MEMBERS 6–10 — replace with real data ──
-//   {
-//     name: 'Team Member 6',
-//     role: 'Role / Title',
-//     dept: 'Department',
-//     bio: 'Add a short bio here — what this person does, what drives them, and what they bring to the Roomie team.',
-//     image: 'https://ui-avatars.com/api/?name=Team+Member+6&size=400&background=2d9d9d&color=ffffff&bold=true&font-size=0.33',
-//     gradientFrom: '#2d9d9d',
-//     gradientTo: '#1a6e6e',
-//     tag: '#247d7d',
-//     tagBg: '#e6f7f7',
-//   },
-//   {
-//     name: 'Team Member 7',
-//     role: 'Role / Title',
-//     dept: 'Department',
-//     bio: 'Add a short bio here — what this person does, what drives them, and what they bring to the Roomie team.',
-//     image: 'https://ui-avatars.com/api/?name=Team+Member+7&size=400&background=3dbdbd&color=ffffff&bold=true&font-size=0.33',
-//     gradientFrom: '#3dbdbd',
-//     gradientTo: '#2d9d9d',
-//     tag: '#247d7d',
-//     tagBg: '#e6f7f7',
-//   },
-//   {
-//     name: 'Team Member 8',
-//     role: 'Role / Title',
-//     dept: 'Department',
-//     bio: 'Add a short bio here — what this person does, what drives them, and what they bring to the Roomie team.',
-//     image: 'https://ui-avatars.com/api/?name=Team+Member+8&size=400&background=1a6e6e&color=ffffff&bold=true&font-size=0.33',
-//     gradientFrom: '#1a6e6e',
-//     gradientTo: '#0f4f4f',
-//     tag: '#1a6e6e',
-//     tagBg: '#d4f0f0',
-//   },
-//   {
-//     name: 'Team Member 9',
-//     role: 'Role / Title',
-//     dept: 'Department',
-//     bio: 'Add a short bio here — what this person does, what drives them, and what they bring to the Roomie team.',
-//     image: 'https://ui-avatars.com/api/?name=Team+Member+9&size=400&background=4dcfcf&color=ffffff&bold=true&font-size=0.33',
-//     gradientFrom: '#4dcfcf',
-//     gradientTo: '#2d9d9d',
-//     tag: '#247d7d',
-//     tagBg: '#e6f7f7',
-//   },
-//   {
-//     name: 'Team Member 10',
-//     role: 'Role / Title',
-//     dept: 'Department',
-//     bio: 'Add a short bio here — what this person does, what drives them, and what they bring to the Roomie team.',
-//     image: 'https://ui-avatars.com/api/?name=Team+Member+10&size=400&background=247d7d&color=ffffff&bold=true&font-size=0.33',
-//     gradientFrom: '#247d7d',
-//     gradientTo: '#1a6e6e',
-//     tag: '#1a6e6e',
-//     tagBg: '#d4f0f0',
-//   },
 ];
-// ─────────────────────────────────────────────────────────────────────────────
 
 function FlipCard({ member, index }: { member: typeof team[0]; index: number }) {
   const [flipped, setFlipped] = useState(false);
@@ -158,7 +99,7 @@ function FlipCard({ member, index }: { member: typeof team[0]; index: number }) 
         onMouseEnter={() => setFlipped(true)}
         onMouseLeave={() => setFlipped(false)}
       >
-        {/* ── FRONT ── */}
+        {/* Front */}
         <div
           className="absolute inset-0 rounded-2xl overflow-hidden"
           style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
@@ -212,7 +153,7 @@ function FlipCard({ member, index }: { member: typeof team[0]; index: number }) 
           </div>
         </div>
 
-        {/* ── BACK ── */}
+        {/* Back */}
         <div
           className="absolute inset-0 rounded-2xl overflow-hidden bg-white"
           style={{
@@ -340,11 +281,11 @@ export default function Team() {
           </h2>
 
           <p className="text-base md:text-lg text-slate-400 max-w-xl mx-auto leading-relaxed">
-            A tight-knit team united by one belief — finding a place to call home should be safe, simple, and human.
+            A small team that believes finding a place to live should be safe, simple and personal.
           </p>
         </div>
 
-        {/* ── GRID: 2 cols mobile → 5 cols desktop, always even rows ── */}
+        {/* Grid */}
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 lg:gap-5">
           {team.map((member, i) => (
             <FlipCard key={member.name} member={member} index={i} />
