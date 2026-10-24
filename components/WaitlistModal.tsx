@@ -76,10 +76,10 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                     <CheckCircle className="w-10 h-10 text-primary" />
                   </motion.div>
                   <h3 className="text-2xl font-bold text-slate-900 mb-3">
-                    You're on the list!
+                    You're on the list
                   </h3>
                   <p className="text-slate-600">
-                    We'll notify you when Roomie launches.
+                    Thanks for signing up. We'll email you as soon as Roomie is live.
                   </p>
                 </motion.div>
               ) : (
@@ -90,7 +90,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                       Join the Waitlist
                     </h2>
                     <p className="text-slate-600">
-                      Be among the first to experience Roomie when we launch!
+                      Leave your name and email and we'll let you know when Roomie launches.
                     </p>
                   </div>
 
@@ -110,7 +110,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="w-full pl-12 pr-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
-                          placeholder="John Doe"
+                          placeholder="Your full name"
                           required
                           disabled={state.submitting}
                         />
@@ -132,7 +132,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           className="w-full pl-12 pr-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
-                          placeholder="john@example.com"
+                          placeholder="you@example.com"
                           required
                           disabled={state.submitting}
                         />
@@ -159,7 +159,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
 
                   {/* Privacy note */}
                   <p className="text-xs text-slate-500 text-center mt-6">
-                    We respect your privacy. No spam, ever.
+                    We'll only email you about Roomie's launch.
                   </p>
                 </>
               )}
