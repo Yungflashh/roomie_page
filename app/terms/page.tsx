@@ -221,8 +221,8 @@ export default function TermsPage() {
           {/* ── Messaging & Content ── */}
           <Section icon={MessageSquare} title="Messaging &amp; Content">
             <p>
-              All content you create or share on Roomie — including messages, listings, reviews,
-              and profile information — must comply with these terms. You are solely responsible
+              All content you create or share on Roomie, including messages, listings, reviews
+              and profile information, must comply with these terms. You are solely responsible
               for your content. You agree not to share:
             </p>
             <BulletList

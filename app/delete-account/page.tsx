@@ -133,7 +133,7 @@ export default function DeleteAccountPage() {
 
             <div className="space-y-5">
               <Step number={1} title="Open Roomie and go to your Profile" description="Tap your avatar or profile icon in the bottom navigation bar." />
-              <Step number={2} title="Open Settings" description='Tap the settings icon (⚙️) in the top-right corner of your profile.' />
+              <Step number={2} title="Open Settings" description="Tap the settings icon in the top-right corner of your profile." />
               <Step number={3} title='Tap "Privacy & Security"' description="Scroll down to find the Privacy & Security option in the settings menu." />
               <Step number={4} title='Scroll to "Danger Zone" and tap "Delete Account"' description="This is at the bottom of the Privacy & Security screen." />
               <Step number={5} title="Enter your password to confirm" description="Type your account password to verify it's really you, then tap Delete Forever." />
@@ -172,7 +172,7 @@ export default function DeleteAccountPage() {
             <p>
               Once your account is deleted, your profile, matches, messages, and all associated
               data <strong>cannot be recovered</strong>. If you're having trouble with the app,
-              consider reaching out to support before deleting — we'd love to help.
+              please contact support before deleting. We may be able to fix it.
             </p>
           </InfoCard>
 

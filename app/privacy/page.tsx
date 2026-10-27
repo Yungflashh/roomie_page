@@ -76,7 +76,7 @@ export default function PrivacyPage() {
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Privacy Policy</h1>
             <p className="text-slate-500 max-w-xl mx-auto text-lg">
-              We take your privacy seriously. Here's exactly what we collect, why, and how we protect it.
+              This policy explains what we collect, why we collect it, and how we protect it.
             </p>
             <div className="inline-flex items-center gap-2 mt-6 px-4 py-2 bg-white rounded-full border border-slate-200 text-slate-400 text-sm">
               <Calendar className="w-4 h-4" />
@@ -161,10 +161,10 @@ export default function PrivacyPage() {
             </p>
             <BulletList
               items={[
-                'With other Roomie users as part of your public or semi-private profile — controlled entirely by your Privacy & Security settings',
-                'With trusted service providers who help us run the app (cloud hosting, analytics, push notifications) — they are bound by confidentiality agreements',
+                'With other Roomie users as part of your public or semi-private profile, as controlled by your Privacy & Security settings',
+                'With trusted service providers who help us run the app (cloud hosting, analytics, push notifications). They are bound by confidentiality agreements',
                 'With law enforcement or regulatory bodies when required by applicable Nigerian law or a valid legal process',
-                'In connection with a merger, acquisition, or sale of assets — you will be notified before your data is transferred',
+                'In connection with a merger, acquisition, or sale of assets. You will be notified before your data is transferred',
               ]}
             />
           </Section>
@@ -175,11 +175,8 @@ export default function PrivacyPage() {
             </p>
             <BulletList
               items={[
-                'End-to-end encryption for in-app messages',
-                'Encrypted storage for sensitive profile data and ID documents',
-                'Secure HTTPS connections for all data transmission',
-                'Access controls ensuring only authorised team members can access user data',
-                'Regular security audits and vulnerability assessments',
+                'Encrypted connections (HTTPS) for all data sent to and from the app',
+                                'Access controls ensuring only authorised team members can access user data',
               ]}
             />
             <p className="mt-3">
