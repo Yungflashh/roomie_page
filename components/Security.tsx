@@ -1,36 +1,36 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Shield, Lock, CheckCircle2, UserCheck, Eye, FileCheck } from 'lucide-react';
+import { ShieldCheck, LockKeyhole, BadgeCheck, Fingerprint, AtSign, ClipboardCheck } from 'lucide-react';
 
 const securityFeatures = [
   {
-    icon: UserCheck,
+    icon: Fingerprint,
     title: 'ID Verification',
     description: 'Users verify their identity with a government-issued ID.',
   },
   {
-    icon: Eye,
+    icon: AtSign,
     title: 'Social Media Check',
     description: 'Link Instagram, X, LinkedIn and other accounts so people can see you are real.',
   },
   {
-    icon: FileCheck,
+    icon: ClipboardCheck,
     title: 'Listing Reports',
     description: 'Spot a listing that looks wrong? Report it and our team will review it.',
   },
   {
-    icon: Lock,
+    icon: LockKeyhole,
     title: 'Secure Connections',
     description: 'Everything you send through Roomie travels over an encrypted connection.',
   },
   {
-    icon: Shield,
+    icon: ShieldCheck,
     title: 'Block and Report',
     description: 'Block anyone at any time and report bad behaviour to our moderation team.',
   },
   {
-    icon: CheckCircle2,
+    icon: BadgeCheck,
     title: 'Roommate Reviews',
     description: 'People who have lived with someone can review them, so you know what to expect.',
   },
@@ -38,73 +38,60 @@ const securityFeatures = [
 
 export default function Security() {
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute -top-20 -right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-6xl mx-auto">
+    <section className="relative overflow-hidden py-24 sm:py-16">
+      <div className="container relative z-10 mx-auto px-6">
+        <div className="mx-auto max-w-6xl">
           {/* Header */}
           <motion.div
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 20 }}
+            className="mx-auto mb-20 max-w-3xl text-center"
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <motion.div
-              className="inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-2xl mb-6"
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Shield className="w-10 h-10 text-primary" />
-            </motion.div>
-            <h2 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6">
-              Built Around Safety
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 px-4 py-2">
+              <ShieldCheck className="h-4 w-4 text-primary" />
+              <span className="text-sm font-medium tracking-wide text-primary">Trust & Safety</span>
+            </div>
+            <h2 className="text-balance text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
+              Your security concerns, <span className="text-primary">handled</span>
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              You're deciding who to live with, so you should know who you're talking to. Here is how we keep Roomie safe.
+            <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-slate-600 sm:text-xl">
+              You&apos;re deciding who to live with, so you should know who you&apos;re talking to.
+              Here is how we keep Roomie safe.
             </p>
           </motion.div>
 
           {/* Features grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid gap-px overflow-hidden rounded-[28px] border border-slate-200 bg-slate-200 sm:grid-cols-2 lg:grid-cols-3">
             {securityFeatures.map((feature, index) => {
               const Icon = feature.icon;
               return (
                 <motion.div
                   key={feature.title}
-                  className="relative p-8 rounded-2xl bg-slate-50 hover:bg-primary/5 transition-colors border border-transparent hover:border-primary/20"
+                  className="group relative bg-white p-8 transition-colors duration-300 hover:bg-slate-50"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
+                  transition={{ duration: 0.5, delay: index * 0.07 }}
                 >
-                  <Icon className="w-10 h-10 text-primary mb-4" />
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-slate-600 leading-relaxed">
-                    {feature.description}
-                  </p>
+                  <span className="mb-6 block text-xs font-semibold tabular-nums tracking-[0.2em] text-slate-400">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+
+                  <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200 transition-all duration-300 group-hover:scale-105 group-hover:border-primary/30">
+                    <Icon className="h-5 w-5 text-primary" strokeWidth={1.75} />
+                  </div>
+
+                  <h3 className="mb-2.5 text-lg font-bold text-slate-900">{feature.title}</h3>
+                  <p className="text-sm leading-relaxed text-slate-600">{feature.description}</p>
+
+                  <span className="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
                 </motion.div>
               );
             })}
           </div>
+
         </div>
       </div>
     </section>

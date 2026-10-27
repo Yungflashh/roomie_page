@@ -14,8 +14,7 @@ const config: Config = {
         'primary-light': '#3dbdbd',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Cal Sans', 'Inter', 'sans-serif'],
+        sans: ['var(--font-outfit)', 'system-ui', 'sans-serif'],
       },
     },
   },

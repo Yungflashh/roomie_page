@@ -1,195 +1,182 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { UserPlus, Search, MessageSquare, Home } from 'lucide-react';
+import { UserPlus, Search, MessageSquare, Home, ArrowRight, Route } from 'lucide-react';
 
 const steps = [
   {
     icon: UserPlus,
     title: 'Create Profile',
     description: 'Sign up, tell us how you like to live, and verify your ID.',
-    image: 'https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=800&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1667453466805-75bbf36e8707?w=800&h=600&fit=crop',
+    meta: 'Takes a few minutes',
   },
   {
     icon: Search,
     title: 'Browse Matches',
     description: 'See people and places that fit your budget, location and lifestyle.',
-    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1758874385197-07d99c183a6f?w=800&h=600&fit=crop',
+    meta: 'Based on your preferences',
   },
   {
     icon: MessageSquare,
     title: 'Start Chatting',
     description: 'Message the people you like and get a feel for each other before you commit.',
-    image: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1758525865438-385dbc8caa5e?w=800&h=600&fit=crop',
+    meta: 'Chat and games built in',
   },
   {
     icon: Home,
     title: 'Move In Together',
     description: 'Once you have found the right person, agree on the details and move in.',
-    image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=600&fit=crop',
+    image: 'https://images.unsplash.com/photo-1772724317350-520faccb15e6?w=800&h=600&fit=crop',
+    meta: 'Sign your rental agreement in the app',
   },
 ];
 
 export default function HowItWorks({ onJoinWaitlist }: { onJoinWaitlist: () => void }) {
   return (
-    <section className="py-24 bg-slate-50 relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden opacity-40">
-        <div className="absolute top-20 right-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-10 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Section header */}
+    <section className="relative overflow-hidden py-24 sm:py-16">
+      <div className="container relative z-10 mx-auto px-6">
+        {/* Header */}
         <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 20 }}
+          className="mx-auto mb-20 max-w-3xl text-center md:mb-28"
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6">
-            How It Works
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 px-4 py-2">
+            <Route className="h-4 w-4 text-primary" />
+            <span className="text-sm font-medium tracking-wide text-primary">Four simple steps</span>
+          </div>
+          <h2 className="text-balance text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
+            How it <span className="text-primary">works</span>
           </h2>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Four steps from sign-up to move-in
+          <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-slate-600 sm:text-xl">
+            Four steps from sign-up to move-in.
           </p>
         </motion.div>
 
-        {/* Steps */}
-        <div className="max-w-6xl mx-auto">
+        {/* Timeline */}
+        <div className="relative mx-auto max-w-6xl">
+          {/* Center rail (desktop) */}
+          <div className="absolute inset-y-0 left-1/2 hidden w-px -translate-x-1/2 md:block">
+            <div className="h-full w-full bg-gradient-to-b from-transparent via-slate-200 to-transparent" />
+            <motion.div
+              className="absolute inset-x-0 top-0 h-full w-full origin-top bg-gradient-to-b from-primary via-primary/50 to-transparent"
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={{ once: true, margin: '-20%' }}
+              transition={{ duration: 1.6, ease: 'easeOut' }}
+            />
+          </div>
+
           {steps.map((step, index) => {
             const Icon = step.icon;
-            const isLast = index === steps.length - 1;
             const isEven = index % 2 === 0;
 
             return (
               <motion.div
                 key={step.title}
-                className="relative mb-20 last:mb-0"
+                className="relative mb-16 last:mb-0 md:mb-24"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true, margin: '-100px' }}
+                transition={{ duration: 0.6, delay: 0.05 }}
               >
-                <div className={`grid md:grid-cols-2 gap-8 lg:gap-12 items-center ${isEven ? '' : 'md:grid-flow-dense'}`}>
-                  {/* Image side */}
+                {/* Rail node */}
+                <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block">
+                  <span className="block h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-white" />
+                </div>
+
+                <div className={`grid items-center gap-8 md:grid-cols-2 md:gap-16 ${isEven ? '' : 'md:grid-flow-dense'}`}>
+                  {/* Image */}
                   <motion.div
-                    className={`relative ${isEven ? '' : 'md:col-start-2'}`}
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
+                    className={`group relative ${isEven ? '' : 'md:col-start-2'}`}
+                    whileHover={{ y: -6 }}
+                    transition={{ duration: 0.35 }}
                   >
-                    <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] group">
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] shadow-2xl shadow-slate-900/10">
                       <img
                         src={step.image}
                         alt={step.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.08]"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-60" />
-                      
-                      {/* Floating step number */}
-                      <motion.div
-                        className="absolute top-6 left-6 w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-xl"
-                        initial={{ scale: 0, rotate: -180 }}
-                        whileInView={{ scale: 1, rotate: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1 + 0.3, type: "spring", stiffness: 200 }}
-                      >
-                        <span className="text-2xl font-bold text-primary">{index + 1}</span>
-                      </motion.div>
-                    </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/15 to-transparent" />
+                      <div className="absolute inset-0 rounded-[28px] ring-1 ring-inset ring-white/15" />
 
-                    {/* Decorative element */}
-                    <div className={`absolute -z-10 w-full h-full rounded-3xl bg-primary/10 ${isEven ? '-bottom-6 -right-6' : '-bottom-6 -left-6'}`} />
+                      {/* Step number */}
+                      <div className="absolute left-5 top-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl">
+                        <span className="text-xl font-bold tabular-nums text-white">
+                          {String(index + 1).padStart(2, '0')}
+                        </span>
+                      </div>
+
+                      {/* Meta pill */}
+                      <div className="absolute inset-x-5 bottom-5">
+                        <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-xl">
+                          <Icon className="h-3.5 w-3.5" strokeWidth={2} />
+                          {step.meta}
+                        </span>
+                      </div>
+                    </div>
                   </motion.div>
 
-                  {/* Content side */}
-                  <div className={`${isEven ? '' : 'md:col-start-1 md:row-start-1'}`}>
-                    <motion.div
-                      initial={{ opacity: 0, x: isEven ? -20 : 20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
-                    >
-                      {/* Icon */}
-                      <motion.div
-                        className="inline-flex w-16 h-16 bg-primary/10 rounded-2xl items-center justify-center mb-6"
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <Icon className="w-8 h-8 text-primary" />
-                      </motion.div>
-
-                      {/* Step badge */}
-                      <motion.div
-                        className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-4"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1 + 0.3 }}
-                      >
-                        Step {index + 1}
-                      </motion.div>
-
-                      <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-                        {step.title}
-                      </h3>
-                      <p className="text-lg text-slate-600 leading-relaxed">
-                        {step.description}
-                      </p>
-
-                      {/* Progress indicator for mobile */}
-                      {!isLast && (
-                        <motion.div
-                          className="md:hidden mt-8 flex items-center gap-3"
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          viewport={{ once: true }}
-                        >
-                          <div className="h-0.5 flex-1 bg-primary/20" />
-                          <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                          <div className="h-0.5 flex-1 bg-primary/20" />
-                        </motion.div>
-                      )}
-                    </motion.div>
-                  </div>
-                </div>
-
-                {/* Connecting line for desktop */}
-                {!isLast && (
+                  {/* Content */}
                   <motion.div
-                    className="hidden md:block absolute left-1/2 -translate-x-1/2 w-0.5 h-20 bg-gradient-to-b from-primary/40 to-transparent"
-                    style={{ top: '100%' }}
-                    initial={{ scaleY: 0 }}
-                    whileInView={{ scaleY: 1 }}
+                    className={isEven ? '' : 'md:col-start-1 md:row-start-1'}
+                    initial={{ opacity: 0, x: isEven ? -24 : 24 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
-                  />
-                )}
+                    transition={{ duration: 0.6, delay: 0.15 }}
+                  >
+                    <div className="mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-slate-200">
+                      <Icon className="h-6 w-6 text-primary" strokeWidth={1.75} />
+                    </div>
+
+                    <div className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                      Step {index + 1}
+                    </div>
+
+                    <h3 className="text-balance text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+                      {step.title}
+                    </h3>
+                    <p className="mt-4 max-w-md text-pretty text-lg leading-relaxed text-slate-600">
+                      {step.description}
+                    </p>
+                  </motion.div>
+                </div>
               </motion.div>
             );
           })}
         </div>
 
-        {/* Call to action */}
+        {/* CTA */}
         <motion.div
-          className="text-center mt-20"
-          initial={{ opacity: 0, y: 20 }}
+          className="mx-auto mt-20 max-w-3xl md:mt-28"
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-lg text-slate-600 mb-6">
-            Ready to start looking?
-          </p>
-          <motion.button
-            onClick={onJoinWaitlist}
-            className="px-8 py-4 bg-primary text-white rounded-full text-lg font-semibold hover:bg-primary-dark transition-all duration-300 shadow-lg hover:shadow-xl"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Get Started
-          </motion.button>
+          <div className="rounded-[32px] border border-slate-200 p-10 text-center sm:p-14">
+            <h3 className="text-balance text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+              Ready to start looking?
+            </h3>
+            <p className="mx-auto mt-3 max-w-md text-slate-600">
+              Join the waitlist and be first in line when Roomie launches in your city.
+            </p>
+            <motion.button
+              onClick={onJoinWaitlist}
+              className="group mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-8 py-4 text-lg font-semibold text-white shadow-lg transition-colors hover:bg-primary-dark"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+            >
+              Get Started
+              <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </motion.button>
+          </div>
         </motion.div>
       </div>
     </section>
